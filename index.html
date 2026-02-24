@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -127,6 +127,34 @@
       box-shadow: 0 6px 20px rgba(160,120,48,0.28);
       transform: translateY(-1px);
     }
+
+    /* ── LANG SWITCHER ── */
+    .lang-switcher {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .lang-btn {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      color: var(--text);
+      opacity: 0.4;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 2px 0;
+      transition: all 0.3s var(--ease);
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+    .lang-btn.active { opacity: 1; color: var(--gold-dark); font-weight: 700; }
+    .lang-btn:hover { opacity: 0.75; }
+    .lang-sep { font-size: 10px; color: var(--text); opacity: 0.2; font-family: 'Source Sans 3', sans-serif; }
+    .mobile-lang { display: flex; align-items: center; gap: 16px; margin-top: 8px; }
+    .mobile-lang .lang-btn { font-size: 18px; letter-spacing: 3px; opacity: 0.45; }
+    .mobile-lang .lang-btn.active { opacity: 1; color: var(--gold-dark); font-weight: 700; }
+    .mobile-lang .lang-sep { font-size: 18px; opacity: 0.2; }
 
     .hamburger {
       display: none;
@@ -796,6 +824,7 @@
       nav { padding: 16px 24px; }
       nav.scrolled { padding: 12px 24px; }
       .nav-links, .nav-cta { display: none; }
+      .lang-switcher { margin-left: auto; margin-right: 16px; }
       .hamburger { display: flex; }
 
       .hero { grid-template-columns: 1fr; }
@@ -930,22 +959,32 @@
       <img src="Name.png" alt="HolCat" class="nav-logo-img">
     </a>
     <ul class="nav-links">
-      <li><a href="#services">Services</a></li>
-      <li><a href="#gallery">Projects</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#services" data-i18n="nav.services">Diensten</a></li>
+      <li><a href="#gallery" data-i18n="nav.projects">Projecten</a></li>
+      <li><a href="#about" data-i18n="nav.about">Over ons</a></li>
+      <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
     </ul>
-    <a href="tel:+31639572715" class="nav-cta">Call us</a>
+    <div class="lang-switcher">
+      <button class="lang-btn" data-lang="nl">NL</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+    <a href="tel:+31639572715" class="nav-cta" data-i18n="nav.cta">Bel ons</a>
     <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
   </nav>
 
   <!-- MOBILE MENU -->
   <div class="mobile-menu" id="mobileMenu">
-    <a href="#services" class="mobile-link">Services</a>
-    <a href="#gallery" class="mobile-link">Projects</a>
-    <a href="#about" class="mobile-link">About</a>
-    <a href="#contact" class="mobile-link">Contact</a>
-    <a href="tel:+31639572715" class="mobile-cta">Call 06 39572715</a>
+    <a href="#services" class="mobile-link" data-i18n="nav.services">Diensten</a>
+    <a href="#gallery" class="mobile-link" data-i18n="nav.projects">Projecten</a>
+    <a href="#about" class="mobile-link" data-i18n="nav.about">Over ons</a>
+    <a href="#contact" class="mobile-link" data-i18n="nav.contact">Contact</a>
+    <a href="tel:+31639572715" class="mobile-cta" data-i18n="nav.mobilecta">Bel 06 39572715</a>
+    <div class="mobile-lang">
+      <button class="lang-btn" data-lang="nl">NL</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
   </div>
 
   <!-- HERO -->
@@ -954,18 +993,18 @@
       <div class="hero-content">
         <div class="hero-eyebrow">
           <div class="hero-eyebrow-line"></div>
-          <span>Wageningen &amp; surroundings</span>
+          <span data-i18n="hero.eyebrow">Wageningen &amp; omgeving</span>
         </div>
-        <h1>Your home,<br><em>crafted</em><br>with care.</h1>
-        <p class="hero-desc">Specialists in home remodeling. Kitchens, bathrooms, living spaces — inside and out. Available within 14 days. No surprises.</p>
+        <h1 data-i18n="hero.title">Jouw thuis,<br><em>met zorg</em><br>gemaakt.</h1>
+        <p class="hero-desc" data-i18n="hero.desc">Specialisten in woningrenovatie. Keukens, badkamers, woonruimtes — van binnen en buiten. Geen verrassingen.</p>
         <div class="hero-actions">
-          <a href="tel:+31639572715" class="btn-primary">Call 06 39572715</a>
+          <a href="tel:+31639572715" class="btn-primary" data-i18n="hero.cta1">Bel 06 39572715</a>
           <a href="mailto:info@holcat.nl" class="btn-link">info@holcat.nl</a>
         </div>
       </div>
       <div class="hero-scroll-hint">
         <div class="scroll-line"></div>
-        <span>Scroll</span>
+        <span data-i18n="hero.scroll">Scroll</span>
       </div>
     </div>
     <div class="hero-right">
@@ -978,37 +1017,37 @@
   <!-- STATS -->
   <div class="stats">
     <div class="stat reveal">
-      <span class="stat-num">Care</span>
-      <span class="stat-lbl">& attention in every job</span>
+      <span class="stat-num" data-i18n="stats.num1">Zorg</span>
+      <span class="stat-lbl" data-i18n="stats.lbl1">&amp; aandacht bij elk project</span>
     </div>
     <div class="stat reveal d1">
       <span class="stat-num">0</span>
-      <span class="stat-lbl">Hidden surprises</span>
+      <span class="stat-lbl" data-i18n="stats.lbl2">Verborgen kosten</span>
     </div>
     <div class="stat reveal d2">
       <span class="stat-num">100%</span>
-      <span class="stat-lbl">Local specialists</span>
+      <span class="stat-lbl" data-i18n="stats.lbl3">Lokale specialisten</span>
     </div>
   </div>
 
   <!-- ABOUT -->
   <section class="about" id="about">
     <div>
-      <div class="sec-label reveal"><div class="sec-label-line"></div>Who we are</div>
-      <h2 class="reveal d1">Craftsmanship rooted<br>in <em>Wageningen</em></h2>
+      <div class="sec-label reveal"><div class="sec-label-line"></div><span data-i18n="about.label">Wie wij zijn</span></div>
+      <h2 class="reveal d1" data-i18n="about.title">Vakmanschap geworteld<br>in <em>Wageningen</em></h2>
       <div class="gold-rule reveal d2"></div>
-      <p class="reveal d2">HolCat Renovations is a team of specialists in house remodeling based in Wageningen, serving the city and its surroundings. We believe that maintaining and repairing homes is essential for well-being — not only for the house, but for the people who live in it.</p>
-      <p class="reveal d3">We have expertise in interior renovations of historical Dutch houses, kitchen design and assembly, bathroom renewals, painting, and finishing surfaces. We work with natural materials and traditional wood techniques.</p>
-      <p class="reveal d4">And because the old must also be preserved, we offer exterior and interior repairs and maintenance, including wooden frames and gutters.</p>
+      <p class="reveal d2" data-i18n="about.p1">HolCat Renovations is een team van specialisten in woningrenovatie, gevestigd in Wageningen, actief in de stad en omgeving. Wij geloven dat het onderhouden en renoveren van woningen essentieel is voor het welzijn — niet alleen voor het huis, maar ook voor de mensen die er wonen.</p>
+      <p class="reveal d3" data-i18n="about.p2">Wij zijn gespecialiseerd in interieurverbouwingen van historische Nederlandse woningen, keukenontwerp en -montage, badkamerrenovaties, schilderwerk en vlakafwerking. Wij werken met natuurlijke materialen en traditionele houtbewerkingstechnieken.</p>
+      <p class="reveal d4" data-i18n="about.p3">En omdat het oude ook bewaard moet blijven, verzorgen wij buiten- en binnenschilderwerk en onderhoud, inclusief houten kozijnen en dakgoten.</p>
     </div>
     <div class="about-card reveal d2">
       <img src="img/wageningen.jpg" alt="Wageningen" class="about-card-img">
-      <p class="about-card-quote">&ldquo;Your home deserves the finest hands.&rdquo;</p>
+      <p class="about-card-quote" data-i18n="about.quote">&ldquo;Jouw thuis verdient de beste handen.&rdquo;</p>
       <div class="about-features">
-        <div class="about-feature"><div class="feat-dot"></div>Historical Dutch house specialists</div>
-        <div class="about-feature"><div class="feat-dot"></div>Natural materials &amp; traditional techniques</div>
-        <div class="about-feature"><div class="feat-dot"></div>Available within 14 days</div>
-        <div class="about-feature"><div class="feat-dot"></div>Transparent pricing, no surprises</div>
+        <div class="about-feature"><div class="feat-dot"></div><span data-i18n="about.feat1">Specialisten in historische Nederlandse woningen</span></div>
+        <div class="about-feature"><div class="feat-dot"></div><span data-i18n="about.feat2">Natuurlijke materialen &amp; traditionele technieken</span></div>
+        <div class="about-feature"><div class="feat-dot"></div><span data-i18n="about.feat3">Beschikbaar binnen 14 dagen</span></div>
+        <div class="about-feature"><div class="feat-dot"></div><span data-i18n="about.feat4">Transparante prijzen, geen verrassingen</span></div>
       </div>
     </div>
   </section>
@@ -1018,41 +1057,41 @@
     <div class="services-inner">
       <div class="services-top">
         <div>
-          <div class="sec-label reveal"><div class="sec-label-line"></div>What we do</div>
-          <h2 class="reveal d1">Our <em>Services</em></h2>
+          <div class="sec-label reveal"><div class="sec-label-line"></div><span data-i18n="svc.label">Wat wij doen</span></div>
+          <h2 class="reveal d1" data-i18n="svc.title">Onze <em>Diensten</em></h2>
         </div>
-        <p class="services-top-desc reveal d2">From a single room to a complete renovation — handled with care and precision.</p>
+        <p class="services-top-desc reveal d2" data-i18n="svc.desc">Van één kamer tot een complete renovatie — met zorg en precisie uitgevoerd.</p>
       </div>
       <div class="services-grid">
         <div class="svc reveal">
           <div class="svc-num">01</div><div class="svc-bar"></div>
-          <h3>Kitchens</h3>
-          <p>Design, assembly and finishing of home kitchens. We help you create the heart of your home — functional, beautiful and built to last.</p>
+          <h3 data-i18n="svc1.title">Keukens</h3>
+          <p data-i18n="svc1.desc">Ontwerp, montage en afwerking van keukens. Wij helpen u het hart van uw thuis te creëren — functioneel, mooi en gebouwd om lang mee te gaan.</p>
         </div>
         <div class="svc reveal d1">
           <div class="svc-num">02</div><div class="svc-bar"></div>
-          <h3>Bathrooms</h3>
-          <p>Complete bathroom renewals from concept to completion. Modern finishes and quality materials that stand the test of time.</p>
+          <h3 data-i18n="svc2.title">Badkamers</h3>
+          <p data-i18n="svc2.desc">Volledige badkamerrenovaties van concept tot oplevering. Moderne afwerkingen en kwaliteitsmaterialen die de tand des tijds doorstaan.</p>
         </div>
         <div class="svc reveal d2">
           <div class="svc-num">03</div><div class="svc-bar"></div>
-          <h3>Living Spaces</h3>
-          <p>Interior renovations tailored to your lifestyle. Living rooms, bedrooms, hallways — transformed with care and craftsmanship.</p>
+          <h3 data-i18n="svc3.title">Woonruimtes</h3>
+          <p data-i18n="svc3.desc">Interieurverbouwingen op maat van uw levensstijl. Woonkamers, slaapkamers, gangen — met zorg en vakmanschap getransformeerd.</p>
         </div>
         <div class="svc reveal d3">
           <div class="svc-num">04</div><div class="svc-bar"></div>
-          <h3>Exterior &amp; Sheds</h3>
-          <p>Outdoor structures and exterior finishes. We protect and enhance the outside of your home with the same dedication as the inside.</p>
+          <h3 data-i18n="svc4.title">Buiten &amp; Schuren</h3>
+          <p data-i18n="svc4.desc">Buitenstructuren en gevelbekleding. Wij beschermen en verfraaien de buitenkant van uw woning met dezelfde toewijding als de binnenkant.</p>
         </div>
         <div class="svc reveal d4">
           <div class="svc-num">05</div><div class="svc-bar"></div>
-          <h3>Painting &amp; Finishing</h3>
-          <p>Professional painting and surface finishing. Natural materials and traditional techniques for a refined, lasting result.</p>
+          <h3 data-i18n="svc5.title">Schilderen &amp; Afwerking</h3>
+          <p data-i18n="svc5.desc">Professioneel schilderwerk en oppervlakteafwerking. Natuurlijke materialen en traditionele technieken voor een verfijnd, duurzaam resultaat.</p>
         </div>
         <div class="svc reveal d5">
           <div class="svc-num">06</div><div class="svc-bar"></div>
-          <h3>Maintenance &amp; Repair</h3>
-          <p>Wooden frames, gutters and structural repairs. Preserving the character of historical Dutch homes.</p>
+          <h3 data-i18n="svc6.title">Onderhoud &amp; Reparatie</h3>
+          <p data-i18n="svc6.desc">Houten kozijnen, dakgoten en constructiereparaties. Behoud van het karakter van historische Nederlandse woningen.</p>
         </div>
       </div>
     </div>
@@ -1065,8 +1104,8 @@
     <div class="gallery-inner">
       <div class="gallery-header reveal">
         <div>
-          <div class="sec-label"><div class="sec-label-line"></div>Our work</div>
-          <h2>Finished <em>projects</em></h2>
+          <div class="sec-label"><div class="sec-label-line"></div><span data-i18n="gallery.label">Ons werk</span></div>
+          <h2 data-i18n="gallery.title">Afgeronde <em>projecten</em></h2>
         </div>
       </div>
       <div class="gallery-grid">
@@ -1089,25 +1128,25 @@
       <div class="gallery-brand">
         <div class="gallery-brand-item reveal d1">
           <img src="img/hero-process.jpg" alt="At work">
-          <span class="gallery-brand-label">At work</span>
+          <span class="gallery-brand-label" data-i18n="gallery.brand1">In actie</span>
         </div>
         <div class="gallery-brand-item reveal d2">
           <img src="img/process-team.jpg" alt="The team">
-          <span class="gallery-brand-label">The team</span>
+          <span class="gallery-brand-label" data-i18n="gallery.brand2">Het team</span>
         </div>
       </div>
     </div>
   </section>
 
   <section class="promise">
-    <div class="sec-label reveal"><div class="sec-label-line"></div>Our promise</div>
-    <h2 class="reveal d1">Available within <em>14 days.</em><br>No surprises.</h2>
-    <p class="promise-desc reveal d2">We know how difficult it is to find available home professionals in the Netherlands today. Our entire process is built on speed, clarity and trust.</p>
+    <div class="sec-label reveal"><div class="sec-label-line"></div><span data-i18n="promise.label">Onze belofte</span></div>
+    <h2 class="reveal d1" data-i18n="promise.title">Beschikbaar binnen <em>14 dagen.</em><br>Geen verrassingen.</h2>
+    <p class="promise-desc reveal d2" data-i18n="promise.desc">Wij weten hoe moeilijk het is om vandaag beschikbare vakmannen te vinden in Nederland. Ons volledige proces is gebouwd op snelheid, duidelijkheid en vertrouwen.</p>
     <div class="promise-items reveal d3">
-      <div class="promise-item"><div class="promise-item-line"></div><span>Fixed timeline</span></div>
-      <div class="promise-item"><div class="promise-item-line"></div><span>Transparent pricing</span></div>
-      <div class="promise-item"><div class="promise-item-line"></div><span>Local expertise</span></div>
-      <div class="promise-item"><div class="promise-item-line"></div><span>Quality materials</span></div>
+      <div class="promise-item"><div class="promise-item-line"></div><span data-i18n="promise.item1">Vaste planning</span></div>
+      <div class="promise-item"><div class="promise-item-line"></div><span data-i18n="promise.item2">Transparante prijzen</span></div>
+      <div class="promise-item"><div class="promise-item-line"></div><span data-i18n="promise.item3">Lokale expertise</span></div>
+      <div class="promise-item"><div class="promise-item-line"></div><span data-i18n="promise.item4">Kwaliteitsmaterialen</span></div>
     </div>
   </section>
 
@@ -1115,41 +1154,41 @@
   <section class="contact" id="contact">
     <div class="contact-inner">
       <div>
-        <div class="sec-label reveal"><div class="sec-label-line"></div>Get in touch</div>
-        <h2 class="reveal d1">Ready to transform<br>your <em>home?</em></h2>
-        <p class="contact-desc reveal d2">Call us or send an email — we'll get back to you within 24 hours, no obligations.</p>
+        <div class="sec-label reveal"><div class="sec-label-line"></div><span data-i18n="contact.label">Neem contact op</span></div>
+        <h2 class="reveal d1" data-i18n="contact.title">Klaar om jouw thuis<br>te <em>transformeren?</em></h2>
+        <p class="contact-desc reveal d2" data-i18n="contact.desc">Bel ons of stuur een e-mail — wij reageren binnen 24 uur, vrijblijvend.</p>
         <div class="contact-list">
           <div class="contact-entry reveal d2">
             <div class="contact-entry-dot"></div>
             <div>
-              <span class="contact-entry-label">Phone</span>
+              <span class="contact-entry-label" data-i18n="contact.phone">Telefoon</span>
               <div class="contact-entry-val"><a href="tel:+31639572715">06 39572715</a></div>
             </div>
           </div>
           <div class="contact-entry reveal d3">
             <div class="contact-entry-dot"></div>
             <div>
-              <span class="contact-entry-label">Email</span>
+              <span class="contact-entry-label" data-i18n="contact.email">E-mail</span>
               <div class="contact-entry-val"><a href="mailto:info@holcat.nl">info@holcat.nl</a></div>
             </div>
           </div>
           <div class="contact-entry reveal d4">
             <div class="contact-entry-dot"></div>
             <div>
-              <span class="contact-entry-label">Location</span>
+              <span class="contact-entry-label" data-i18n="contact.location">Locatie</span>
               <div class="contact-entry-val">Wageningen, NL</div>
             </div>
           </div>
         </div>
       </div>
       <div class="contact-box reveal d2">
-        <h3>Get in touch</h3>
-        <p>Available on working days. We'll give you an honest estimate of your project — no obligations.</p>
+        <h3 data-i18n="contact.box.title">Neem contact op</h3>
+        <p data-i18n="contact.box.desc">Beschikbaar op werkdagen. Wij geven u een eerlijke schatting van uw project — vrijblijvend.</p>
         <div style="display:flex; flex-direction:column; gap:14px;">
-          <a href="tel:+31639572715" class="btn-primary">Call: 06 39572715</a>
-          <a href="mailto:info@holcat.nl" class="btn-primary" style="background:#1C1C1C;">Email: info@holcat.nl</a>
+          <a href="tel:+31639572715" class="btn-primary" data-i18n="contact.cta1">Bel: 06 39572715</a>
+          <a href="mailto:info@holcat.nl" class="btn-primary" style="background:#1C1C1C;" data-i18n="contact.cta2">E-mail: info@holcat.nl</a>
         </div>
-        <div class="contact-response"><div class="online-dot"></div>Response within 24 hours</div>
+        <div class="contact-response"><div class="online-dot"></div><span data-i18n="contact.response">Reactie binnen 24 uur</span></div>
       </div>
     </div>
   </section>
@@ -1162,9 +1201,9 @@
     </div>
     <span class="footer-copy">© 2025 HolCat · holcat.com</span>
     <div class="footer-links">
-      <a href="#services">Services</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+      <a href="#services" data-i18n="footer.services">Diensten</a>
+      <a href="#about" data-i18n="footer.about">Over ons</a>
+      <a href="#contact" data-i18n="footer.contact">Contact</a>
     </div>
   </footer>
 
@@ -1188,6 +1227,183 @@
         mobileMenu.classList.remove('open');
       });
     });
+
+    // ── TRANSLATIONS ──
+    const translations = {
+      nl: {
+        'nav.services': 'Diensten',
+        'nav.projects': 'Projecten',
+        'nav.about': 'Over ons',
+        'nav.contact': 'Contact',
+        'nav.cta': 'Bel ons',
+        'nav.mobilecta': 'Bel 06 39572715',
+
+        'hero.eyebrow': 'Wageningen &amp; omgeving',
+        'hero.title': 'Jouw thuis,<br><em>met zorg</em><br>gemaakt.',
+        'hero.desc': 'Specialisten in woningrenovatie. Keukens, badkamers, woonruimtes — van binnen en buiten. Geen verrassingen.',
+        'hero.cta1': 'Bel 06 39572715',
+        'hero.scroll': 'Scroll',
+
+        'stats.num1': 'Zorg',
+        'stats.lbl1': '&amp; aandacht bij elk project',
+        'stats.lbl2': 'Verborgen kosten',
+        'stats.lbl3': 'Lokale specialisten',
+
+        'about.label': 'Wie wij zijn',
+        'about.title': 'Vakmanschap geworteld<br>in <em>Wageningen</em>',
+        'about.p1': 'HolCat Renovations is een team van specialisten in woningrenovatie, gevestigd in Wageningen, actief in de stad en omgeving. Wij geloven dat het onderhouden en renoveren van woningen essentieel is voor het welzijn — niet alleen voor het huis, maar ook voor de mensen die er wonen.',
+        'about.p2': 'Wij zijn gespecialiseerd in interieurverbouwingen van historische Nederlandse woningen, keukenontwerp en -montage, badkamerrenovaties, schilderwerk en vlakafwerking. Wij werken met natuurlijke materialen en traditionele houtbewerkingstechnieken.',
+        'about.p3': 'En omdat het oude ook bewaard moet blijven, verzorgen wij buiten- en binnenschilderwerk en onderhoud, inclusief houten kozijnen en dakgoten.',
+        'about.quote': '&ldquo;Jouw thuis verdient de beste handen.&rdquo;',
+        'about.feat1': 'Specialisten in historische Nederlandse woningen',
+        'about.feat2': 'Natuurlijke materialen &amp; traditionele technieken',
+        'about.feat3': 'Beschikbaar binnen 14 dagen',
+        'about.feat4': 'Transparante prijzen, geen verrassingen',
+
+        'svc.label': 'Wat wij doen',
+        'svc.title': 'Onze <em>Diensten</em>',
+        'svc.desc': 'Van één kamer tot een complete renovatie — met zorg en precisie uitgevoerd.',
+        'svc1.title': 'Keukens',
+        'svc1.desc': 'Ontwerp, montage en afwerking van keukens. Wij helpen u het hart van uw thuis te creëren — functioneel, mooi en gebouwd om lang mee te gaan.',
+        'svc2.title': 'Badkamers',
+        'svc2.desc': 'Volledige badkamerrenovaties van concept tot oplevering. Moderne afwerkingen en kwaliteitsmaterialen die de tand des tijds doorstaan.',
+        'svc3.title': 'Woonruimtes',
+        'svc3.desc': 'Interieurverbouwingen op maat van uw levensstijl. Woonkamers, slaapkamers, gangen — met zorg en vakmanschap getransformeerd.',
+        'svc4.title': 'Buiten &amp; Schuren',
+        'svc4.desc': 'Buitenstructuren en gevelbekleding. Wij beschermen en verfraaien de buitenkant van uw woning met dezelfde toewijding als de binnenkant.',
+        'svc5.title': 'Schilderen &amp; Afwerking',
+        'svc5.desc': 'Professioneel schilderwerk en oppervlakteafwerking. Natuurlijke materialen en traditionele technieken voor een verfijnd, duurzaam resultaat.',
+        'svc6.title': 'Onderhoud &amp; Reparatie',
+        'svc6.desc': 'Houten kozijnen, dakgoten en constructiereparaties. Behoud van het karakter van historische Nederlandse woningen.',
+
+        'gallery.label': 'Ons werk',
+        'gallery.title': 'Afgeronde <em>projecten</em>',
+        'gallery.brand1': 'In actie',
+        'gallery.brand2': 'Het team',
+
+        'promise.label': 'Onze belofte',
+        'promise.title': 'Beschikbaar binnen <em>14 dagen.</em><br>Geen verrassingen.',
+        'promise.desc': 'Wij weten hoe moeilijk het is om vandaag beschikbare vakmannen te vinden in Nederland. Ons volledige proces is gebouwd op snelheid, duidelijkheid en vertrouwen.',
+        'promise.item1': 'Vaste planning',
+        'promise.item2': 'Transparante prijzen',
+        'promise.item3': 'Lokale expertise',
+        'promise.item4': 'Kwaliteitsmaterialen',
+
+        'contact.label': 'Neem contact op',
+        'contact.title': 'Klaar om jouw thuis<br>te <em>transformeren?</em>',
+        'contact.desc': 'Bel ons of stuur een e-mail — wij reageren binnen 24 uur, vrijblijvend.',
+        'contact.phone': 'Telefoon',
+        'contact.email': 'E-mail',
+        'contact.location': 'Locatie',
+        'contact.box.title': 'Neem contact op',
+        'contact.box.desc': 'Beschikbaar op werkdagen. Wij geven u een eerlijke schatting van uw project — vrijblijvend.',
+        'contact.cta1': 'Bel: 06 39572715',
+        'contact.cta2': 'E-mail: info@holcat.nl',
+        'contact.response': 'Reactie binnen 24 uur',
+
+        'footer.services': 'Diensten',
+        'footer.about': 'Over ons',
+        'footer.contact': 'Contact',
+      },
+      en: {
+        'nav.services': 'Services',
+        'nav.projects': 'Projects',
+        'nav.about': 'About',
+        'nav.contact': 'Contact',
+        'nav.cta': 'Call us',
+        'nav.mobilecta': 'Call 06 39572715',
+
+        'hero.eyebrow': 'Wageningen &amp; surroundings',
+        'hero.title': 'Your home,<br><em>crafted</em><br>with care.',
+        'hero.desc': 'Specialists in home remodeling. Kitchens, bathrooms, living spaces — inside and out. No surprises.',
+        'hero.cta1': 'Call 06 39572715',
+        'hero.scroll': 'Scroll',
+
+        'stats.num1': 'Care',
+        'stats.lbl1': '&amp; attention in every job',
+        'stats.lbl2': 'Hidden surprises',
+        'stats.lbl3': 'Local specialists',
+
+        'about.label': 'Who we are',
+        'about.title': 'Craftsmanship rooted<br>in <em>Wageningen</em>',
+        'about.p1': 'HolCat Renovations is a team of specialists in house remodeling based in Wageningen, serving the city and its surroundings. We believe that maintaining and repairing homes is essential for well-being — not only for the house, but for the people who live in it.',
+        'about.p2': 'We have expertise in interior renovations of historical Dutch houses, kitchen design and assembly, bathroom renewals, painting, and finishing surfaces. We work with natural materials and traditional wood techniques.',
+        'about.p3': 'And because the old must also be preserved, we offer exterior and interior repairs and maintenance, including wooden frames and gutters.',
+        'about.quote': '&ldquo;Your home deserves the finest hands.&rdquo;',
+        'about.feat1': 'Historical Dutch house specialists',
+        'about.feat2': 'Natural materials &amp; traditional techniques',
+        'about.feat3': 'Available within 14 days',
+        'about.feat4': 'Transparent pricing, no surprises',
+
+        'svc.label': 'What we do',
+        'svc.title': 'Our <em>Services</em>',
+        'svc.desc': 'From a single room to a complete renovation — handled with care and precision.',
+        'svc1.title': 'Kitchens',
+        'svc1.desc': 'Design, assembly and finishing of home kitchens. We help you create the heart of your home — functional, beautiful and built to last.',
+        'svc2.title': 'Bathrooms',
+        'svc2.desc': 'Complete bathroom renewals from concept to completion. Modern finishes and quality materials that stand the test of time.',
+        'svc3.title': 'Living Spaces',
+        'svc3.desc': 'Interior renovations tailored to your lifestyle. Living rooms, bedrooms, hallways — transformed with care and craftsmanship.',
+        'svc4.title': 'Exterior &amp; Sheds',
+        'svc4.desc': 'Outdoor structures and exterior finishes. We protect and enhance the outside of your home with the same dedication as the inside.',
+        'svc5.title': 'Painting &amp; Finishing',
+        'svc5.desc': 'Professional painting and surface finishing. Natural materials and traditional techniques for a refined, lasting result.',
+        'svc6.title': 'Maintenance &amp; Repair',
+        'svc6.desc': 'Wooden frames, gutters and structural repairs. Preserving the character of historical Dutch homes.',
+
+        'gallery.label': 'Our work',
+        'gallery.title': 'Finished <em>projects</em>',
+        'gallery.brand1': 'At work',
+        'gallery.brand2': 'The team',
+
+        'promise.label': 'Our promise',
+        'promise.title': 'Available within <em>14 days.</em><br>No surprises.',
+        'promise.desc': 'We know how difficult it is to find available home professionals in the Netherlands today. Our entire process is built on speed, clarity and trust.',
+        'promise.item1': 'Fixed timeline',
+        'promise.item2': 'Transparent pricing',
+        'promise.item3': 'Local expertise',
+        'promise.item4': 'Quality materials',
+
+        'contact.label': 'Get in touch',
+        'contact.title': 'Ready to transform<br>your <em>home?</em>',
+        'contact.desc': "Call us or send an email — we'll get back to you within 24 hours, no obligations.",
+        'contact.phone': 'Phone',
+        'contact.email': 'Email',
+        'contact.location': 'Location',
+        'contact.box.title': 'Get in touch',
+        'contact.box.desc': "Available on working days. We'll give you an honest estimate of your project — no obligations.",
+        'contact.cta1': 'Call: 06 39572715',
+        'contact.cta2': 'Email: info@holcat.nl',
+        'contact.response': 'Response within 24 hours',
+
+        'footer.services': 'Services',
+        'footer.about': 'About',
+        'footer.contact': 'Contact',
+      }
+    };
+
+    function setLang(lang) {
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key] !== undefined) {
+          el.innerHTML = translations[lang][key];
+        }
+      });
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+      });
+      localStorage.setItem('lang', lang);
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        setLang(btn.getAttribute('data-lang'));
+        mobileMenu.classList.remove('open');
+      });
+    });
+
+    setLang(localStorage.getItem('lang') || 'nl');
   </script>
 </body>
 </html>
