@@ -378,7 +378,8 @@
     .stats {
       background: var(--black);
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: 440px auto auto;
     }
 
     .stat {
@@ -540,7 +541,8 @@
 
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: 440px auto auto;
       gap: 16px;
     }
 
@@ -889,7 +891,8 @@
     .gallery h2 em { font-style: italic; color: var(--gold-dark); }
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: 440px auto auto;
       grid-template-rows: auto;
       gap: 16px;
     }
@@ -914,7 +917,8 @@
     .gallery-item:hover img { transform: scale(1.04); }
     .gallery-brand {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: 440px auto auto;
       gap: 16px;
       margin-top: 16px;
     }
@@ -932,14 +936,14 @@
       transition: transform 0.5s var(--ease), filter 0.5s var(--ease);
     }
     .gallery-brand-item:hover img { transform: scale(1.04); filter: brightness(0.95); }
-    .gallery-brand-wide { grid-column: span 2; }
-    .gallery-brand-wide img { height: 300px; }
-    .gallery-brand-full { grid-column: span 3; }
-    .gallery-brand-full img { height: 280px; }
-    .gallery-brand-portrait { align-self: start; }
-    .gallery-brand-portrait img { height: 440px; object-position: center top; }
-    .gallery-brand-landscape { align-self: stretch; }
-    .gallery-brand-landscape img { height: 100%; object-position: center center; }
+    .gallery-brand-1of3 { grid-column: span 2; }
+    .gallery-brand-1of3 img { height: 100%; object-position: center top; }
+    .gallery-brand-2of3 { grid-column: span 4; }
+    .gallery-brand-2of3 img { height: 100%; object-position: center center; }
+    .gallery-brand-full { grid-column: span 6; }
+    .gallery-brand-full img { height: 380px; object-position: center center; }
+    .gallery-brand-half { grid-column: span 3; }
+    .gallery-brand-half img { height: 300px; object-position: center center; }
     .gallery-brand-label {
       position: absolute;
       bottom: 20px;
@@ -955,7 +959,8 @@
       .gallery { padding: 80px 24px; }
       .gallery-grid { grid-template-columns: 1fr 1fr; }
       .gallery-item:first-child { grid-column: span 2; }
-      .gallery-brand { grid-template-columns: 1fr; }
+      .gallery-brand { grid-template-columns: 1fr; grid-template-rows: auto; }
+      .gallery-brand-1of3, .gallery-brand-2of3, .gallery-brand-full, .gallery-brand-half { grid-column: span 1; }
       .gallery-brand-item img { height: 240px; }
     }
   </style>
@@ -1135,20 +1140,20 @@
         </div>
       </div>
       <div class="gallery-brand">
-        <div class="gallery-brand-item gallery-brand-portrait reveal d1">
+        <div class="gallery-brand-item gallery-brand-1of3 reveal d1">
           <img src="img/project-fence-1.jpg" alt="Houtwerk buiten">
         </div>
-        <div class="gallery-brand-item gallery-brand-wide gallery-brand-landscape reveal d2">
+        <div class="gallery-brand-item gallery-brand-2of3 reveal d2">
           <img src="img/project-fence-2.jpg" alt="Tuinschutting">
         </div>
-        <div class="gallery-brand-item reveal d3">
+        <div class="gallery-brand-item gallery-brand-full reveal d3">
           <img src="img/project-painting-room.jpg" alt="Schilderwerk woonkamer">
         </div>
-        <div class="gallery-brand-item gallery-brand-wide reveal d4">
+        <div class="gallery-brand-item gallery-brand-half reveal d4">
           <img src="img/hero-process.jpg" alt="At work">
           <span class="gallery-brand-label" data-i18n="gallery.brand1">In actie</span>
         </div>
-        <div class="gallery-brand-item gallery-brand-full reveal d1">
+        <div class="gallery-brand-item gallery-brand-half reveal d1">
           <img src="img/process-team.jpg" alt="The team">
           <span class="gallery-brand-label" data-i18n="gallery.brand2">Het team</span>
         </div>
