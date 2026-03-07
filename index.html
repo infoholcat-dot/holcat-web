@@ -932,7 +932,9 @@
       transition: transform 0.5s var(--ease), filter 0.5s var(--ease);
     }
     .gallery-brand-item:hover img { transform: scale(1.04); filter: brightness(0.95); }
-    .gallery-brand-portrait img { height: 500px; object-position: center top; }
+    .gallery-brand-wide { grid-column: span 2; }
+    .gallery-brand-wide img { height: 280px; }
+    .gallery-brand-portrait img { height: 480px; object-position: center top; }
     .gallery-brand-label {
       position: absolute;
       bottom: 20px;
@@ -1128,23 +1130,23 @@
         </div>
       </div>
       <div class="gallery-brand">
-        <div class="gallery-brand-item reveal d1">
-          <img src="img/project-painting-room.jpg" alt="Schilderwerk woonkamer">
+        <div class="gallery-brand-item gallery-brand-wide reveal">
+          <img src="img/project-painting-kitchen.jpg" alt="Schilderwerk keuken">
         </div>
-        <div class="gallery-brand-item reveal d2">
+        <div class="gallery-brand-item gallery-brand-portrait reveal d1">
+          <img src="img/project-fence-1.jpg" alt="Houtwerk buiten">
+        </div>
+        <div class="gallery-brand-item gallery-brand-portrait reveal d2">
           <img src="img/project-fence-2.jpg" alt="Tuinschutting">
         </div>
         <div class="gallery-brand-item reveal d3">
-          <img src="img/project-fence-1.jpg" alt="Houtwerk buiten">
+          <img src="img/project-painting-room.jpg" alt="Schilderwerk woonkamer">
         </div>
         <div class="gallery-brand-item reveal d4">
-          <img src="img/project-painting-kitchen.jpg" alt="Schilderwerk keuken">
-        </div>
-        <div class="gallery-brand-item reveal d1">
           <img src="img/hero-process.jpg" alt="At work">
           <span class="gallery-brand-label" data-i18n="gallery.brand1">In actie</span>
         </div>
-        <div class="gallery-brand-item reveal d2">
+        <div class="gallery-brand-item gallery-brand-wide reveal d1">
           <img src="img/process-team.jpg" alt="The team">
           <span class="gallery-brand-label" data-i18n="gallery.brand2">Het team</span>
         </div>
