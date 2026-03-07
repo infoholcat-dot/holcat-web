@@ -457,9 +457,11 @@
     .about-card {
       background: var(--cream);
       border: 1px solid var(--cream3);
-      padding: 56px 48px;
+      padding: 0;
       position: relative;
+      overflow: hidden;
     }
+    .about-card-content { padding: 40px 48px; }
 
     .about-card::before {
       content: '';
@@ -469,9 +471,12 @@
       background: var(--gold);
     }
 
-    .about-card img {
-      width: 110px;
-      margin-bottom: 30px;
+    .about-card-img {
+      width: 100%;
+      height: 340px;
+      object-fit: cover;
+      object-position: center 60%;
+      display: block;
     }
 
     .about-card-quote {
@@ -1101,12 +1106,14 @@
     </div>
     <div class="about-card reveal d2">
       <img src="img/wageningen.jpg" alt="Wageningen" class="about-card-img">
+      <div class="about-card-content">
       <p class="about-card-quote" data-i18n="about.quote">&ldquo;Jouw thuis verdient de beste handen.&rdquo;</p>
       <div class="about-features">
         <div class="about-feature"><div class="feat-dot"></div><span data-i18n="about.feat1">Specialisten in historische Nederlandse woningen</span></div>
         <div class="about-feature"><div class="feat-dot"></div><span data-i18n="about.feat2">Natuurlijke materialen &amp; traditionele technieken</span></div>
         <div class="about-feature"><div class="feat-dot"></div><span data-i18n="about.feat3">Beschikbaar binnen 14 dagen</span></div>
         <div class="about-feature"><div class="feat-dot"></div><span data-i18n="about.feat4">Transparante prijzen, geen verrassingen</span></div>
+      </div>
       </div>
     </div>
   </section>
