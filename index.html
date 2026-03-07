@@ -987,6 +987,7 @@
       transform-origin: center center;
       cursor: zoom-in;
       user-select: none;
+      -webkit-user-drag: none;
     }
     .lb-img.fade { opacity: 0; }
     .lb-close {
@@ -1504,10 +1505,9 @@
 
     // ── ZOOM STATE ──
     let scale = 1, tx = 0, ty = 0;
-    let isDragging = false, dragStartX, dragStartY, dragTx, dragTy;
 
     function resetZoom() {
-      scale = 1; tx = 0; ty = 0;
+      scale = 1; tx = 0; ty = 0; zoomed = false; baseRect = null;
       applyTransform();
       lbImg.style.cursor = 'zoom-in';
     }
@@ -1552,58 +1552,59 @@
 
     document.addEventListener('keydown', e => {
       if (!overlay.classList.contains('active')) return;
-      if (e.key === 'Escape') { if (scale > 1) resetZoom(); else close(); }
-      if (e.key === 'ArrowLeft'  && scale === 1) show(current - 1);
-      if (e.key === 'ArrowRight' && scale === 1) show(current + 1);
+      if (e.key === 'Escape') { if (zoomed) { resetZoom(); zoomed = false; } else close(); }
+      if (e.key === 'ArrowLeft'  && !zoomed) show(current - 1);
+      if (e.key === 'ArrowRight' && !zoomed) show(current + 1);
     });
 
-    // ── SCROLL WHEEL ZOOM ──
-    lbImg.addEventListener('wheel', e => {
-      e.preventDefault();
-      const delta = e.deltaY < 0 ? 0.2 : -0.2;
-      scale = Math.min(5, Math.max(1, scale + delta));
-      if (scale === 1) { tx = 0; ty = 0; }
+    // ── AMAZON-STYLE ZOOM (desktop) ──
+    // Click per ampliar x3, el cursor mou la zona visible
+    let zoomed = false, baseRect = null;
+
+    function cacheBaseRect() {
+      lbImg.style.transform = 'none';
+      baseRect = lbImg.getBoundingClientRect();
       applyTransform();
-      lbImg.style.cursor = scale > 1 ? 'grab' : 'zoom-in';
-    }, { passive: false });
+    }
 
-    // ── DOUBLE CLICK ZOOM ──
-    lbImg.addEventListener('dblclick', () => {
-      scale = scale > 1 ? 1 : 2.5;
-      if (scale === 1) { tx = 0; ty = 0; }
+    function updatePan(clientX, clientY) {
+      if (!baseRect) return;
+      const fx = Math.max(0, Math.min(1, (clientX - baseRect.left)  / baseRect.width));
+      const fy = Math.max(0, Math.min(1, (clientY - baseRect.top)   / baseRect.height));
+      tx = (0.5 - fx) * baseRect.width;
+      ty = (0.5 - fy) * baseRect.height;
       applyTransform();
-      lbImg.style.cursor = scale > 1 ? 'grab' : 'zoom-in';
+    }
+
+    lbImg.addEventListener('click', e => {
+      e.stopPropagation();
+      if (!zoomed) {
+        cacheBaseRect();
+        scale = 3; zoomed = true;
+        lbImg.style.cursor = 'zoom-out';
+        updatePan(e.clientX, e.clientY);
+      } else {
+        resetZoom(); zoomed = false;
+      }
     });
 
-    // ── DRAG TO PAN ──
-    lbImg.addEventListener('mousedown', e => {
-      if (scale <= 1) return;
-      isDragging = true;
-      dragStartX = e.clientX; dragStartY = e.clientY;
-      dragTx = tx; dragTy = ty;
-      lbImg.style.cursor = 'grabbing';
-      e.preventDefault();
-    });
-    window.addEventListener('mousemove', e => {
-      if (!isDragging) return;
-      tx = dragTx + (e.clientX - dragStartX) / scale;
-      ty = dragTy + (e.clientY - dragStartY) / scale;
-      applyTransform();
-    });
-    window.addEventListener('mouseup', () => {
-      if (!isDragging) return;
-      isDragging = false;
-      lbImg.style.cursor = scale > 1 ? 'grab' : 'zoom-in';
+    lbImg.addEventListener('mousemove', e => {
+      if (!zoomed) return;
+      updatePan(e.clientX, e.clientY);
     });
 
-    // ── PINCH TO ZOOM (MOBILE) ──
-    let lastDist = 0;
+    // ── PINCH TO ZOOM + DRAG (mobile) ──
+    let lastDist = 0, lastTx = 0, lastTy = 0, lastTouchX = 0, lastTouchY = 0;
     overlay.addEventListener('touchstart', e => {
       if (e.touches.length === 2) {
         lastDist = Math.hypot(
           e.touches[0].clientX - e.touches[1].clientX,
           e.touches[0].clientY - e.touches[1].clientY
         );
+      } else if (e.touches.length === 1 && scale > 1) {
+        lastTouchX = e.touches[0].clientX;
+        lastTouchY = e.touches[0].clientY;
+        lastTx = tx; lastTy = ty;
       }
     }, { passive: true });
     overlay.addEventListener('touchmove', e => {
@@ -1613,11 +1614,15 @@
           e.touches[0].clientX - e.touches[1].clientX,
           e.touches[0].clientY - e.touches[1].clientY
         );
-        const ratio = dist / lastDist;
-        scale = Math.min(5, Math.max(1, scale * ratio));
+        scale = Math.min(5, Math.max(1, scale * (dist / lastDist)));
         if (scale === 1) { tx = 0; ty = 0; }
         applyTransform();
         lastDist = dist;
+      } else if (e.touches.length === 1 && scale > 1) {
+        e.preventDefault();
+        tx = lastTx + (e.touches[0].clientX - lastTouchX) / scale;
+        ty = lastTy + (e.touches[0].clientY - lastTouchY) / scale;
+        applyTransform();
       }
     }, { passive: false });
   });
