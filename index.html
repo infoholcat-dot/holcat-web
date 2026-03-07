@@ -1168,37 +1168,37 @@
         <p class="services-top-desc reveal d2" data-i18n="svc.desc">Van één kamer tot een complete renovatie — met zorg en precisie uitgevoerd.</p>
       </div>
       <div class="services-grid">
-        <div class="svc reveal" data-scroll-to="cat-kitchen">
+        <div class="svc reveal" data-scroll-to="kitchen">
           <div class="svc-num">01</div><div class="svc-bar"></div>
           <h3 data-i18n="svc1.title">Keukens</h3>
           <p data-i18n="svc1.desc">Ontwerp, montage en afwerking van keukens. Wij helpen u het hart van uw thuis te creëren — functioneel, mooi en gebouwd om lang mee te gaan.</p>
           <span class="svc-scroll-hint">↓ Bekijk project</span>
         </div>
-        <div class="svc reveal d1" data-scroll-to="cat-bathroom">
+        <div class="svc reveal d1" data-scroll-to="bathroom">
           <div class="svc-num">02</div><div class="svc-bar"></div>
           <h3 data-i18n="svc2.title">Badkamers</h3>
           <p data-i18n="svc2.desc">Volledige badkamerrenovaties van concept tot oplevering. Moderne afwerkingen en kwaliteitsmaterialen die de tand des tijds doorstaan.</p>
           <span class="svc-scroll-hint">↓ Bekijk project</span>
         </div>
-        <div class="svc reveal d2" data-scroll-to="cat-living">
+        <div class="svc reveal d2" data-scroll-to="living">
           <div class="svc-num">03</div><div class="svc-bar"></div>
           <h3 data-i18n="svc3.title">Woonruimtes</h3>
           <p data-i18n="svc3.desc">Interieurverbouwingen op maat van uw levensstijl. Woonkamers, slaapkamers, gangen — met zorg en vakmanschap getransformeerd.</p>
           <span class="svc-scroll-hint">↓ Bekijk project</span>
         </div>
-        <div class="svc reveal d3" data-scroll-to="cat-outdoor">
+        <div class="svc reveal d3" data-scroll-to="outdoor">
           <div class="svc-num">04</div><div class="svc-bar"></div>
           <h3 data-i18n="svc4.title">Buiten &amp; Schuren</h3>
           <p data-i18n="svc4.desc">Buitenstructuren en gevelbekleding. Wij beschermen en verfraaien de buitenkant van uw woning met dezelfde toewijding als de binnenkant.</p>
           <span class="svc-scroll-hint">↓ Bekijk project</span>
         </div>
-        <div class="svc reveal d4" data-scroll-to="cat-painting">
+        <div class="svc reveal d4" data-scroll-to="painting">
           <div class="svc-num">05</div><div class="svc-bar"></div>
           <h3 data-i18n="svc5.title">Schilderen &amp; Afwerking</h3>
           <p data-i18n="svc5.desc">Professioneel schilderwerk en oppervlakteafwerking. Natuurlijke materialen en traditionele technieken voor een verfijnd, duurzaam resultaat.</p>
           <span class="svc-scroll-hint">↓ Bekijk project</span>
         </div>
-        <div class="svc reveal d5" data-scroll-to="cat-maintenance">
+        <div class="svc reveal d5" data-scroll-to="maintenance">
           <div class="svc-num">06</div><div class="svc-bar"></div>
           <h3 data-i18n="svc6.title">Onderhoud &amp; Reparatie</h3>
           <p data-i18n="svc6.desc">Houten kozijnen, dakgoten en constructiereparaties. Behoud van het karakter van historische Nederlandse woningen.</p>
@@ -1220,19 +1220,19 @@
         </div>
       </div>
       <div class="gallery-grid">
-        <div class="gallery-item reveal" id="cat-kitchen">
+        <div class="gallery-item reveal" data-category="kitchen">
           <img src="img/project-kitchen.jpg" data-lightbox alt="Kitchen renovation">
         </div>
-        <div class="gallery-item reveal d1" id="cat-bathroom">
+        <div class="gallery-item reveal d1" data-category="bathroom">
           <img src="img/project-bathroom.jpg" data-lightbox alt="Bathroom renovation">
         </div>
-        <div class="gallery-item reveal d1" id="cat-living">
+        <div class="gallery-item reveal d1" data-category="living">
           <img src="img/project-room.jpg" data-lightbox alt="Living room renovation">
         </div>
-        <div class="gallery-item reveal d2">
+        <div class="gallery-item reveal d2" data-category="living">
           <img src="img/project-bedroom.jpg" data-lightbox alt="Bedroom renovation">
         </div>
-        <div class="gallery-item reveal d2" id="cat-maintenance">
+        <div class="gallery-item reveal d2" data-category="maintenance">
           <img src="img/project-roof.jpg" data-lightbox alt="Roof renovation">
         </div>
       </div>
@@ -1240,10 +1240,10 @@
         <div class="gallery-brand-item gallery-brand-1of3 reveal d1">
           <img src="img/project-fence-1.jpg" alt="Houtwerk buiten">
         </div>
-        <div class="gallery-brand-item gallery-brand-2of3 reveal d2" id="cat-outdoor">
+        <div class="gallery-brand-item gallery-brand-2of3 reveal d2" data-category="outdoor">
           <img src="img/project-fence-2.jpg" data-lightbox alt="Tuinschutting">
         </div>
-        <div class="gallery-brand-item gallery-brand-full reveal d3" id="cat-painting">
+        <div class="gallery-brand-item gallery-brand-full reveal d3" data-category="painting">
           <img src="img/project-painting-room.jpg" data-lightbox alt="Schilderwerk woonkamer">
         </div>
         <div class="gallery-brand-item gallery-brand-half reveal d4">
@@ -1539,8 +1539,9 @@
   // ── SERVICE → GALLERY SCROLL ──
   document.querySelectorAll('.svc[data-scroll-to]').forEach(svc => {
     svc.addEventListener('click', () => {
-      const target = document.getElementById(svc.dataset.scrollTo);
-      if (!target) return;
+      const targets = Array.from(document.querySelectorAll('[data-category="' + svc.dataset.scrollTo.replace('cat-', '') + '"]'));
+      if (!targets.length) return;
+      const target = targets[Math.floor(Math.random() * targets.length)];
       target.scrollIntoView({ behavior: 'smooth', block: 'center' });
       target.classList.add('gallery-cat-highlight');
       setTimeout(() => target.classList.remove('gallery-cat-highlight'), 1800);
