@@ -1479,7 +1479,7 @@
     setLang(localStorage.getItem('lang') || 'nl');
   
   // ── LIGHTBOX ──
-  (function() {
+  document.addEventListener('DOMContentLoaded', function() {
     const imgs = Array.from(document.querySelectorAll('img[data-lightbox]'));
     const overlay = document.getElementById('lb-overlay');
     const lbImg   = document.getElementById('lb-img');
@@ -1530,7 +1530,7 @@
       if (e.key === 'ArrowLeft')  show(current - 1);
       if (e.key === 'ArrowRight') show(current + 1);
     });
-  })();
+  });
 </script>
 
   <!-- LIGHTBOX -->
@@ -1541,6 +1541,8 @@
     <button class="lb-btn lb-next" id="lb-next" aria-label="Volgende">&#8594;</button>
     <span class="lb-counter" id="lb-counter"></span>
   </div>
+
+
 
 </body>
 </html>
