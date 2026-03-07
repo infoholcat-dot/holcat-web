@@ -936,7 +936,9 @@
     .gallery-brand-wide img { height: 300px; }
     .gallery-brand-full { grid-column: span 3; }
     .gallery-brand-full img { height: 280px; }
-    .gallery-brand-portrait img { height: 480px; object-position: center top; }
+    .gallery-brand-portrait { align-self: start; }
+    .gallery-brand-portrait img { height: 440px; object-position: center top; }
+    .gallery-brand-landscape img { height: 260px; object-position: center center; }
     .gallery-brand-label {
       position: absolute;
       bottom: 20px;
@@ -1132,10 +1134,10 @@
         </div>
       </div>
       <div class="gallery-brand">
-        <div class="gallery-brand-item gallery-brand-wide reveal d1">
+        <div class="gallery-brand-item gallery-brand-portrait reveal d1">
           <img src="img/project-fence-1.jpg" alt="Houtwerk buiten">
         </div>
-        <div class="gallery-brand-item reveal d2">
+        <div class="gallery-brand-item gallery-brand-wide gallery-brand-landscape reveal d2">
           <img src="img/project-fence-2.jpg" alt="Tuinschutting">
         </div>
         <div class="gallery-brand-item reveal d3">
