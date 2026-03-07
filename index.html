@@ -914,7 +914,7 @@
     .gallery-item:hover img { transform: scale(1.04); }
     .gallery-brand {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: 16px;
       margin-top: 16px;
     }
@@ -933,18 +933,10 @@
     }
     .gallery-brand-item:hover img { transform: scale(1.04); filter: brightness(0.95); }
     .gallery-brand-wide { grid-column: span 2; }
-    .gallery-brand-wide img { height: 280px; }
+    .gallery-brand-wide img { height: 300px; }
+    .gallery-brand-full { grid-column: span 3; }
+    .gallery-brand-full img { height: 280px; }
     .gallery-brand-portrait img { height: 480px; object-position: center top; }
-    .gallery-brand-fill { align-self: stretch; }
-    .gallery-brand-fill img { height: 100%; min-height: 240px; }
-    .gallery-brand-accent::after {
-      content: '';
-      position: absolute;
-      inset: 10px;
-      border: 1.5px solid rgba(201,168,76,0.45);
-      pointer-events: none;
-      z-index: 1;
-    }
     .gallery-brand-label {
       position: absolute;
       bottom: 20px;
@@ -1140,20 +1132,20 @@
         </div>
       </div>
       <div class="gallery-brand">
-        <div class="gallery-brand-item gallery-brand-portrait gallery-brand-accent reveal d1">
+        <div class="gallery-brand-item gallery-brand-wide reveal d1">
           <img src="img/project-fence-1.jpg" alt="Houtwerk buiten">
         </div>
-        <div class="gallery-brand-item gallery-brand-fill reveal d2">
+        <div class="gallery-brand-item reveal d2">
           <img src="img/project-fence-2.jpg" alt="Tuinschutting">
         </div>
         <div class="gallery-brand-item reveal d3">
           <img src="img/project-painting-room.jpg" alt="Schilderwerk woonkamer">
         </div>
-        <div class="gallery-brand-item reveal d4">
+        <div class="gallery-brand-item gallery-brand-wide reveal d4">
           <img src="img/hero-process.jpg" alt="At work">
           <span class="gallery-brand-label" data-i18n="gallery.brand1">In actie</span>
         </div>
-        <div class="gallery-brand-item gallery-brand-wide reveal d1">
+        <div class="gallery-brand-item gallery-brand-full reveal d1">
           <img src="img/process-team.jpg" alt="The team">
           <span class="gallery-brand-label" data-i18n="gallery.brand2">Het team</span>
         </div>
