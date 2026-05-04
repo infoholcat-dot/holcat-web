@@ -9,12 +9,12 @@
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;800&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --gold: #C9A84C;
-      --gold-light: #E2C97E;
-      --gold-dark: #A07830;
+      --gold: #E5B36D;
+      --gold-light: #F0C98A;
+      --gold-dark: #C9962A;
       --black: #111111;
       --cream: #FAF7F2;
       --cream2: #F3EDE3;
@@ -30,6 +30,9 @@
 
     body {
       font-family: 'Source Sans 3', sans-serif;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
       background: var(--cream);
       color: var(--text);
       overflow-x: hidden;
@@ -40,17 +43,24 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 200;
-      padding: 30px 64px;
+      height: 150px;
+      transition: all 0.4s var(--ease);
+    }
+
+    .nav-inner {
+      max-width: 1600px;
+      margin: 0 auto;
+      height: 100%;
+      padding: 0 64px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      transition: all 0.4s var(--ease);
     }
 
     nav.scrolled {
       background: rgba(250,247,242,0.97);
       backdrop-filter: blur(14px);
-      padding: 20px 64px;
+      height: 120px;
       border-bottom: 1px solid rgba(201,168,76,0.18);
       box-shadow: 0 4px 30px rgba(0,0,0,0.05);
     }
@@ -63,8 +73,16 @@
     }
 
     .nav-logo-img {
-      height: 36px;
+      height: 190px;
       width: auto;
+    }
+
+    @media (max-width: 980px) {
+      .nav-logo-img { height: 90px; }
+    }
+
+    @media (max-width: 480px) {
+      .nav-logo-img { height: 70px; }
     }
 
     .nav-logo-words {
@@ -74,7 +92,7 @@
     }
 
     .nav-logo-name {
-      font-family: 'Libre Baskerville', serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 24px;
       font-weight: 600;
       color: var(--gold-dark);
@@ -97,10 +115,10 @@
     }
 
     .nav-links a {
-      font-family: 'Source Sans 3', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 15px;
       font-weight: 400;
-      font-style: italic;
+      font-style: normal;
       color: var(--text);
       text-decoration: none;
       opacity: 0.55;
@@ -114,7 +132,7 @@
       background: var(--gold);
       color: white;
       padding: 11px 30px;
-      font-family: 'Source Sans 3', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 10px;
       letter-spacing: 2px;
       text-transform: uppercase;
@@ -182,7 +200,7 @@
     }
     .mobile-menu.open { display: flex; }
     .mobile-menu a {
-      font-family: 'Libre Baskerville', serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 32px;
       font-weight: 400;
       color: #1C1C1C;
@@ -191,7 +209,7 @@
     }
     .mobile-menu a:hover { color: #A07830; }
     .mobile-menu .mobile-cta {
-      background: #C9A84C;
+      background: var(--gold);
       color: white;
       padding: 14px 40px;
       font-family: 'Source Sans 3', sans-serif;
@@ -211,11 +229,24 @@
     }
 
     .hero-left {
-      background: var(--cream);
+      background: var(--white);
       display: flex;
       align-items: center;
-      padding: 140px 96px 80px;
+      justify-content: center;
+      padding: 140px 64px 80px;
       position: relative;
+      overflow: hidden;
+    }
+
+    .hero-pattern {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 90%;
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: 0;
+      clip-path: inset(7px 0 0 0);
     }
 
     .hero-left::after {
@@ -255,7 +286,7 @@
       position: absolute;
       bottom: 48px;
       right: 40px;
-      font-family: 'Libre Baskerville', serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 13px;
       font-style: italic;
       color: rgba(255,255,255,0.5);
@@ -264,6 +295,10 @@
     }
 
     .hero-content {
+      max-width: 560px;
+      width: 100%;
+      position: relative;
+      z-index: 1;
       animation: fadeUp 1s ease both;
     }
 
@@ -291,9 +326,9 @@
     }
 
     .hero h1 {
-      font-family: 'Libre Baskerville', serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: clamp(36px, 3.8vw, 58px);
-      font-weight: 700;
+      font-weight: 400;
       line-height: 1.15;
       color: var(--black);
       max-width: 480px;
@@ -302,8 +337,9 @@
     }
 
     .hero h1 em {
-      font-style: italic;
-      color: var(--gold-dark);
+      font-style: normal;
+      font-weight: 800;
+      color: var(--gold);
     }
 
     .hero-desc {
@@ -390,7 +426,7 @@
     .stat:last-child { border-right: none; }
 
     .stat-num {
-      font-family: 'Libre Baskerville', serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 60px;
       font-weight: 300;
       color: var(--gold);
@@ -408,6 +444,7 @@
 
     /* ── ABOUT ── */
     .about {
+      background: var(--cream);
       padding: 130px 120px;
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -432,15 +469,15 @@
     .sec-label-line { width: 28px; height: 1px; background: var(--gold); flex-shrink: 0; }
 
     .about h2 {
-      font-family: 'Libre Baskerville', serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: clamp(36px, 3.8vw, 54px);
-      font-weight: 700;
+      font-weight: 400;
       line-height: 1.2;
       color: var(--black);
       margin-bottom: 20px;
     }
 
-    .about h2 em { font-style: italic; color: var(--gold-dark); }
+    .about h2 em { font-style: normal; font-weight: 800; color: var(--gold); }
 
     .gold-rule { width: 48px; height: 2px; background: var(--gold); margin: 24px 0 28px; }
 
@@ -480,7 +517,7 @@
     }
 
     .about-card-quote {
-      font-family: 'Libre Baskerville', serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 26px;
       font-weight: 300;
       font-style: italic;
@@ -499,7 +536,7 @@
       display: flex;
       align-items: center;
       gap: 13px;
-      font-family: 'Libre Baskerville', serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 17px;
       font-weight: 400;
       color: var(--text);
@@ -524,17 +561,17 @@
     }
 
     .services-top h2 {
-      font-family: 'Libre Baskerville', serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: clamp(36px, 3.8vw, 54px);
-      font-weight: 700;
+      font-weight: 400;
       color: var(--black);
     }
 
-    .services-top h2 em { font-style: italic; color: var(--gold-dark); }
+    .services-top h2 em { font-style: normal; font-weight: 800; color: var(--gold); }
 
     .services-top-desc {
       max-width: 270px;
-      font-family: 'Libre Baskerville', serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 18px;
       font-style: italic;
       font-weight: 300;
@@ -573,7 +610,7 @@
     .svc:hover { border-color: rgba(201,168,76,0.25); box-shadow: 0 16px 48px rgba(0,0,0,0.07); transform: translateY(-5px); }
 
     .svc-num {
-      font-family: 'Libre Baskerville', serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 64px;
       font-weight: 300;
       color: rgba(201,168,76,0.13);
@@ -588,7 +625,7 @@
     .svc:hover .svc-bar { width: 50px; }
 
     .svc h3 {
-      font-family: 'Libre Baskerville', serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 26px;
       font-weight: 400;
       color: var(--black);
@@ -596,16 +633,81 @@
     }
 
     .svc p {
-      font-family: 'Libre Baskerville', serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 17px;
       font-weight: 300;
       line-height: 1.8;
       opacity: 0.55;
     }
 
+    /* ── TEAM ── */
+    .team {
+      background: var(--white);
+      overflow: hidden;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: 1.8fr 1.2fr 2fr;
+      align-items: center;
+    }
+
+    .team-photo-wrap {
+      height: 90vh;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .team-photo-wrap img {
+      height: 120vh;
+      width: auto;
+      object-fit: contain;
+      object-position: left bottom;
+      display: block;
+    }
+
+    .team-info {
+      padding: 80px 60px;
+    }
+
+    .team-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(28px, 2.5vw, 44px);
+      font-weight: 400;
+      color: var(--black);
+      margin: 16px 0 8px;
+      line-height: 1.1;
+    }
+
+    .team-name em {
+      font-style: normal;
+      font-weight: 800;
+      color: var(--gold);
+    }
+
+    .team-role {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin-bottom: 32px;
+    }
+
+    .team-bio {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.85;
+      color: var(--text);
+      opacity: 0.65;
+    }
+
     /* ── PROMISE ── */
     .promise {
-      padding: 130px 64px;
+      padding: 60px 64px;
       background: var(--black);
       text-align: center;
       position: relative;
@@ -623,7 +725,7 @@
     .promise .sec-label-line { background: var(--gold); }
 
     .promise h2 {
-      font-family: 'Libre Baskerville', serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: clamp(40px, 5vw, 68px);
       font-weight: 700;
       color: white;
@@ -632,10 +734,10 @@
       max-width: 760px;
     }
 
-    .promise h2 em { font-style: italic; color: var(--gold-light); }
+    .promise h2 em { font-style: normal; font-weight: 800; color: var(--gold-light); }
 
     .promise-desc {
-      font-family: 'Libre Baskerville', serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 20px;
       font-weight: 300;
       font-style: italic;
@@ -663,7 +765,7 @@
     .promise-item-line { width: 28px; height: 1px; background: var(--gold); margin: 0 auto 16px; }
 
     .promise-item span {
-      font-family: 'Libre Baskerville', serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 17px;
       font-style: italic;
       color: rgba(255,255,255,0.5);
@@ -685,17 +787,17 @@
     }
 
     .contact h2 {
-      font-family: 'Libre Baskerville', serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: clamp(36px, 3.8vw, 54px);
-      font-weight: 700;
+      font-weight: 400;
       color: var(--black);
       margin-bottom: 20px;
     }
 
-    .contact h2 em { font-style: italic; color: var(--gold-dark); }
+    .contact h2 em { font-style: normal; font-weight: 800; color: var(--gold); }
 
     .contact-desc {
-      font-family: 'Libre Baskerville', serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 19px;
       font-weight: 300;
       font-style: italic;
@@ -730,7 +832,7 @@
     }
 
     .contact-entry-val {
-      font-family: 'Libre Baskerville', serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 26px;
       font-weight: 300;
       color: var(--black);
@@ -756,7 +858,7 @@
     }
 
     .contact-box h3 {
-      font-family: 'Libre Baskerville', serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 34px;
       font-weight: 300;
       color: var(--black);
@@ -764,7 +866,7 @@
     }
 
     .contact-box p {
-      font-family: 'Libre Baskerville', serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 18px;
       font-weight: 300;
       font-style: italic;
@@ -795,30 +897,35 @@
       border-top: 1px solid rgba(201,168,76,0.12);
     }
 
-    .footer-brand-name {
-      font-family: 'Libre Baskerville', serif;
-      font-size: 26px;
-      font-weight: 400;
-      color: var(--gold-light);
-      letter-spacing: 1px;
+    .footer-brand { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+
+    .footer-logo {
+      height: 48px;
+      width: auto;
     }
 
     .footer-brand-sub {
+      font-family: 'Source Sans 3', sans-serif;
       font-size: 9px;
+      font-weight: 400;
       letter-spacing: 2px;
       text-transform: uppercase;
       color: rgba(255,255,255,0.28);
-      display: block;
-      margin-top: 3px;
     }
 
-    .footer-copy { font-size: 11px; color: rgba(255,255,255,0.22); letter-spacing: 0.3px; }
+    .footer-copy {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 11px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.22);
+      letter-spacing: 0.3px;
+    }
 
     .footer-links { display: flex; gap: 28px; }
     .footer-links a {
-      font-family: 'Libre Baskerville', serif;
-      font-size: 16px;
-      font-style: italic;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
       color: rgba(255,255,255,0.28);
       text-decoration: none;
       transition: color 0.3s;
@@ -827,8 +934,11 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 980px) {
-      nav { padding: 16px 24px; }
-      nav.scrolled { padding: 12px 24px; }
+      nav { height: 90px; }
+      nav.scrolled { height: 72px; }
+      .nav-logo-img { height: 64px; }
+      .nav-inner { padding: 0 24px; }
+      nav.scrolled .nav-inner { padding: 0 24px; }
       .nav-links, .nav-cta { display: none; }
       .lang-switcher { margin-left: auto; margin-right: 16px; }
       .hamburger { display: flex; }
@@ -837,17 +947,25 @@
       .hero-right { height: 300px; }
       .hero-left { padding: 100px 24px 70px; }
       .hero-scroll-hint { left: 24px; }
-
-      .stats { grid-template-columns: 1fr; }
-      .stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
+      .hero-pattern { display: none; }
 
       .about, .contact-inner { grid-template-columns: 1fr; padding: 80px 24px; gap: 48px; }
       .about { padding: 80px 24px; }
+
+      .team-grid { grid-template-columns: 1fr; }
+      .team-photo-wrap { height: 70vh; }
+      .team-extra { display: none; }
+      .team-info { padding: 48px 24px 60px; }
 
       .services { padding: 80px 24px; }
       .services-top { flex-direction: column; align-items: flex-start; gap: 16px; }
       .services-top-desc { text-align: left; max-width: 100%; }
       .services-grid { grid-template-columns: 1fr; gap: 12px; }
+
+      .gallery { padding: 80px 24px; }
+      .gallery-brand { grid-template-columns: 1fr; }
+      .gallery-brand-1of3, .gallery-brand-2of3, .gallery-brand-full, .gallery-brand-half { grid-column: span 1; }
+      .gallery-brand-item img { height: 240px; }
 
       .promise { padding: 80px 24px; }
       .promise-items { flex-wrap: wrap; }
@@ -857,6 +975,16 @@
 
       footer { flex-direction: column; gap: 20px; text-align: center; padding: 40px 24px; }
       .footer-links { justify-content: center; }
+    }
+
+    @media (max-width: 480px) {
+      nav { height: 72px; }
+      nav.scrolled { height: 60px; }
+      .nav-logo-img { height: 50px; }
+      .hero-left { padding: 90px 20px 60px; }
+      .team-photo-wrap { height: 55vh; }
+      .promise-item { min-width: 100%; }
+      .gallery-item:first-child { grid-column: span 2; }
     }
 
     /* ── REVEAL ── */
@@ -885,13 +1013,13 @@
       margin-bottom: 48px;
     }
     .gallery h2 {
-      font-family: 'Libre Baskerville', serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: clamp(32px, 3.5vw, 50px);
       font-weight: 700;
       color: var(--black);
       line-height: 1.15;
     }
-    .gallery h2 em { font-style: italic; color: var(--gold-dark); }
+    .gallery h2 em { font-style: italic; color: var(--gold); }
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -904,9 +1032,16 @@
       background: var(--cream3);
       cursor: pointer;
     }
-    .gallery-item:first-child {
+    .gallery-item:first-child,
+    .gallery-item-first {
       grid-column: span 2;
       grid-row: span 1;
+    }
+    .gallery-item-wide {
+      grid-column: span 3;
+    }
+    .gallery-item-wide img {
+      min-height: 360px;
     }
     .gallery-item img {
       width: 100%;
@@ -959,15 +1094,6 @@
       color: rgba(255,255,255,0.8);
       font-weight: 500;
     }
-    @media (max-width: 980px) {
-      .gallery { padding: 80px 24px; }
-      .gallery-grid { grid-template-columns: 1fr 1fr; }
-      .gallery-item:first-child { grid-column: span 2; }
-      .gallery-brand { grid-template-columns: 1fr; grid-template-rows: auto; }
-      .gallery-brand-1of3, .gallery-brand-2of3, .gallery-brand-full, .gallery-brand-half { grid-column: span 1; }
-      .gallery-brand-item img { height: 240px; }
-    }
-
     /* ── LIGHTBOX ── */
     .lb-overlay {
       position: fixed; inset: 0;
@@ -1057,8 +1183,9 @@
 
   <!-- NAV -->
   <nav id="nav">
+    <div class="nav-inner">
     <a href="#" class="nav-logo">
-      <img src="Name.png" alt="HolCat" class="nav-logo-img">
+      <img src="img/logo final.png" alt="HolCat" class="nav-logo-img">
     </a>
     <ul class="nav-links">
       <li><a href="#services" data-i18n="nav.services">Diensten</a></li>
@@ -1073,6 +1200,7 @@
     </div>
     <a href="tel:+31639572715" class="nav-cta" data-i18n="nav.cta">Bel ons</a>
     <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
   </nav>
 
   <!-- MOBILE MENU -->
@@ -1092,6 +1220,7 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-left">
+      <img src="img/fons-patro-final.png" class="hero-pattern" alt="">
       <div class="hero-content">
         <div class="hero-eyebrow">
           <div class="hero-eyebrow-line"></div>
@@ -1117,21 +1246,6 @@
     </div>
   </section>
 
-  <!-- STATS -->
-  <div class="stats">
-    <div class="stat reveal">
-      <span class="stat-num" data-i18n="stats.num1">Zorg</span>
-      <span class="stat-lbl" data-i18n="stats.lbl1">&amp; aandacht bij elk project</span>
-    </div>
-    <div class="stat reveal d1">
-      <span class="stat-num">0</span>
-      <span class="stat-lbl" data-i18n="stats.lbl2">Verborgen kosten</span>
-    </div>
-    <div class="stat reveal d2">
-      <span class="stat-num">100%</span>
-      <span class="stat-lbl" data-i18n="stats.lbl3">Lokale specialisten</span>
-    </div>
-  </div>
 
   <!-- ABOUT -->
   <section class="about" id="about">
@@ -1154,6 +1268,29 @@
         <div class="about-feature"><div class="feat-dot"></div><span data-i18n="about.feat4">Transparante prijzen, geen verrassingen</span></div>
       </div>
       </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="team" id="team">
+    <div class="team-grid">
+
+      <!-- Roger — foto 2/3, text 1/3 -->
+      <div class="team-photo-wrap reveal">
+        <img src="img/team/roger-frame.png" alt="Roger Bosch">
+      </div>
+
+      <div class="team-info reveal d1">
+        <div class="sec-label"><div class="sec-label-line"></div><span data-i18n="team.label">Ons team</span></div>
+        <h2 class="team-name" data-i18n="team.roger.name">Roger <em>Bosch</em></h2>
+        <div class="team-role" data-i18n="team.roger.role">Founder &amp; Project Lead</div>
+        <p class="team-bio" data-i18n="team.roger.bio">Roger richtte HolCat op met één doel: renovaties uitvoeren zoals hij ze zelf thuis zou willen. Praktisch, eerlijk en met oog voor detail. Met jarenlange ervaring in de bouw begeleidt hij elk project van begin tot einde.</p>
+      </div>
+
+      <div class="team-extra reveal d2">
+        <!-- ressenyes / foto projecte -->
+      </div>
+
     </div>
   </section>
 
@@ -1235,6 +1372,9 @@
         <div class="gallery-item reveal d2" data-category="maintenance">
           <img src="img/project-roof.jpg" data-lightbox alt="Roof renovation">
         </div>
+        <div class="gallery-item gallery-item-wide reveal d3" data-category="outdoor">
+          <img src="img/projects/outdoor/outdoor-1.jpg" data-lightbox alt="Buitenschilderwerk">
+        </div>
       </div>
       <div class="gallery-brand">
         <div class="gallery-brand-item gallery-brand-1of3 reveal d1">
@@ -1258,16 +1398,9 @@
     </div>
   </section>
 
+
   <section class="promise">
-    <div class="sec-label reveal"><div class="sec-label-line"></div><span data-i18n="promise.label">Onze belofte</span></div>
-    <h2 class="reveal d1" data-i18n="promise.title">Beschikbaar binnen <em>14 dagen.</em><br>Geen verrassingen.</h2>
     <p class="promise-desc reveal d2" data-i18n="promise.desc">Wij weten hoe moeilijk het is om vandaag beschikbare vakmannen te vinden in Nederland. Ons volledige proces is gebouwd op snelheid, duidelijkheid en vertrouwen.</p>
-    <div class="promise-items reveal d3">
-      <div class="promise-item"><div class="promise-item-line"></div><span data-i18n="promise.item1">Vaste planning</span></div>
-      <div class="promise-item"><div class="promise-item-line"></div><span data-i18n="promise.item2">Transparante prijzen</span></div>
-      <div class="promise-item"><div class="promise-item-line"></div><span data-i18n="promise.item3">Lokale expertise</span></div>
-      <div class="promise-item"><div class="promise-item-line"></div><span data-i18n="promise.item4">Kwaliteitsmaterialen</span></div>
-    </div>
   </section>
 
   <!-- CONTACT -->
@@ -1306,7 +1439,7 @@
         <p data-i18n="contact.box.desc">Beschikbaar op werkdagen. Wij geven u een eerlijke schatting van uw project — vrijblijvend.</p>
         <div style="display:flex; flex-direction:column; gap:14px;">
           <a href="tel:+31639572715" class="btn-primary" data-i18n="contact.cta1">Bel: 06 39572715</a>
-          <a href="mailto:info@holcat.nl" class="btn-primary" style="background:#1C1C1C;" data-i18n="contact.cta2">E-mail: info@holcat.nl</a>
+          <a href="mailto:info@holcat.nl" class="btn-primary" style="background:var(--gold);" data-i18n="contact.cta2">E-mail: info@holcat.nl</a>
         </div>
         <div class="contact-response"><div class="online-dot"></div><span data-i18n="contact.response">Reactie binnen 24 uur</span></div>
       </div>
@@ -1315,11 +1448,10 @@
 
   <!-- FOOTER -->
   <footer>
-    <div>
-      <div class="footer-brand-name">HolCat</div>
-      <span class="footer-brand-sub">Remodeling · Wageningen</span>
+    <div class="footer-brand">
+      <img src="img/logo-sense-bottom.png" alt="HolCat" class="footer-logo">
     </div>
-    <span class="footer-copy">© 2025 HolCat · holcat.com</span>
+    <span class="footer-copy">© 2026 HolCat · holcat.com</span>
     <div class="footer-links">
       <a href="#services" data-i18n="footer.services">Diensten</a>
       <a href="#about" data-i18n="footer.about">Over ons</a>
@@ -1426,6 +1558,11 @@
         'contact.cta2': 'E-mail: info@holcat.nl',
         'contact.response': 'Reactie binnen 24 uur',
 
+        'team.label': 'Ons team',
+        'team.roger.name': 'Roger <em>Bosch</em>',
+        'team.roger.role': 'Founder &amp; Project Lead',
+        'team.roger.bio': 'Roger richtte HolCat op met één doel: renovaties uitvoeren zoals hij ze zelf thuis zou willen. Praktisch, eerlijk en met oog voor detail. Met jarenlange ervaring in de bouw begeleidt hij elk project van begin tot einde.',
+
         'footer.services': 'Diensten',
         'footer.about': 'Over ons',
         'footer.contact': 'Contact',
@@ -1505,6 +1642,11 @@
         'contact.cta1': 'Call: 06 39572715',
         'contact.cta2': 'Email: info@holcat.nl',
         'contact.response': 'Response within 24 hours',
+
+        'team.label': 'Our team',
+        'team.roger.name': 'Roger <em>Bosch</em>',
+        'team.roger.role': 'Founder &amp; Project Lead',
+        'team.roger.bio': 'Roger founded HolCat with one goal: to carry out renovations the way he would want them done in his own home. Practical, honest and with an eye for detail. With years of experience in construction, he guides every project from start to finish.',
 
         'footer.services': 'Services',
         'footer.about': 'About',
