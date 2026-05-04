@@ -954,7 +954,7 @@
 
       .team-grid { grid-template-columns: 1fr; }
       .team-photo-wrap { height: 60vh; overflow: hidden; }
-      .team-photo-wrap img { width: 100%; height: 100%; object-fit: contain; object-position: center bottom; clip-path: none; }
+      .team-photo-wrap img { width: 100%; height: 100%; object-fit: contain; object-position: left bottom; clip-path: none; }
       .team-extra { display: none; }
       .team-info { padding: 48px 24px 60px; }
 
@@ -964,11 +964,14 @@
       .services-grid { grid-template-columns: 1fr; gap: 12px; }
 
       .gallery { padding: 80px 24px; }
-      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .gallery-item:first-child, .gallery-item-first { grid-column: span 1; }
       .gallery-item-wide { grid-column: span 2; }
+      .gallery-item img { min-height: 200px; }
+      .gallery-item-wide img { min-height: 220px; }
       .gallery-brand { grid-template-columns: 1fr; }
       .gallery-brand-1of3, .gallery-brand-2of3, .gallery-brand-full, .gallery-brand-half { grid-column: span 1; }
-      .gallery-brand-item img { height: 240px; }
+      .gallery-brand-item img { height: 200px; }
 
       .promise { padding: 80px 24px; }
       .promise-items { flex-wrap: wrap; }
@@ -986,8 +989,9 @@
       .nav-logo-img { height: 50px; }
       .hero-left { padding: 90px 20px 60px; }
       .team-photo-wrap { height: 50vh; }
-      .gallery-grid { grid-template-columns: 1fr; }
-      .gallery-item-wide, .gallery-item:first-child { grid-column: span 1; }
+      .gallery-grid { grid-template-columns: 1fr; gap: 8px; }
+      .gallery-item-wide, .gallery-item:first-child, .gallery-item-first { grid-column: span 1; }
+      .gallery-item img, .gallery-item-wide img { min-height: 180px; }
       .promise-item { min-width: 100%; }
     }
 
