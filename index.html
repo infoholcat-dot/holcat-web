@@ -239,14 +239,7 @@
     }
 
     .hero-pattern {
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      width: 90%;
-      opacity: 0.35;
-      pointer-events: none;
-      z-index: 0;
-      clip-path: inset(7px 0 0 0);
+      display: none;
     }
 
     .hero-left::after {
@@ -963,15 +956,15 @@
       .services-top-desc { text-align: left; max-width: 100%; }
       .services-grid { grid-template-columns: 1fr; gap: 12px; }
 
-      .gallery { padding: 80px 24px; }
-      .gallery-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .gallery { padding: 48px 16px; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+      .gallery-item { aspect-ratio: 4/3; }
       .gallery-item:first-child, .gallery-item-first { grid-column: span 1; }
-      .gallery-item-wide { grid-column: span 2; }
-      .gallery-item img { min-height: 200px; }
-      .gallery-item-wide img { min-height: 220px; }
-      .gallery-brand { grid-template-columns: 1fr; }
+      .gallery-item-wide { grid-column: span 2; aspect-ratio: 16/7; }
+      .gallery-item img, .gallery-item-wide img { min-height: unset; height: 100%; }
+      .gallery-brand { grid-template-columns: 1fr; gap: 8px; }
       .gallery-brand-1of3, .gallery-brand-2of3, .gallery-brand-full, .gallery-brand-half { grid-column: span 1; }
-      .gallery-brand-item img { height: 200px; }
+      .gallery-brand-item img { height: 180px; }
 
       .promise { padding: 80px 24px; }
       .promise-items { flex-wrap: wrap; }
@@ -990,8 +983,9 @@
       .hero-left { padding: 90px 20px 60px; }
       .team-photo-wrap { height: 50vh; }
       .gallery-grid { grid-template-columns: 1fr; gap: 8px; }
-      .gallery-item-wide, .gallery-item:first-child, .gallery-item-first { grid-column: span 1; }
-      .gallery-item img, .gallery-item-wide img { min-height: 180px; }
+      .gallery-item { aspect-ratio: 4/3; }
+      .gallery-item-wide, .gallery-item:first-child, .gallery-item-first { grid-column: span 1; aspect-ratio: 4/3; }
+      .gallery-item img, .gallery-item-wide img { min-height: unset; height: 100%; }
       .promise-item { min-width: 100%; }
     }
 
