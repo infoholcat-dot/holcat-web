@@ -953,7 +953,8 @@
       .about { padding: 80px 24px; }
 
       .team-grid { grid-template-columns: 1fr; }
-      .team-photo-wrap { height: 70vh; }
+      .team-photo-wrap { height: 60vh; overflow: hidden; }
+      .team-photo-wrap img { width: 100%; height: 100%; object-fit: contain; object-position: center bottom; clip-path: none; }
       .team-extra { display: none; }
       .team-info { padding: 48px 24px 60px; }
 
@@ -963,6 +964,8 @@
       .services-grid { grid-template-columns: 1fr; gap: 12px; }
 
       .gallery { padding: 80px 24px; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-item-wide { grid-column: span 2; }
       .gallery-brand { grid-template-columns: 1fr; }
       .gallery-brand-1of3, .gallery-brand-2of3, .gallery-brand-full, .gallery-brand-half { grid-column: span 1; }
       .gallery-brand-item img { height: 240px; }
@@ -982,9 +985,10 @@
       nav.scrolled { height: 60px; }
       .nav-logo-img { height: 50px; }
       .hero-left { padding: 90px 20px 60px; }
-      .team-photo-wrap { height: 55vh; }
+      .team-photo-wrap { height: 50vh; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-item-wide, .gallery-item:first-child { grid-column: span 1; }
       .promise-item { min-width: 100%; }
-      .gallery-item:first-child { grid-column: span 2; }
     }
 
     /* ── REVEAL ── */
